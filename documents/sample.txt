@@ -1,0 +1,3 @@
+Transformers are powerful models in NLP.
+They use attention mechanisms.
+RAG combines retrieval with generation.
