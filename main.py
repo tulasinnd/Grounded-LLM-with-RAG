@@ -1,12 +1,17 @@
-from src.loader import load_text
+from src.loader import load_documents
+from src.chunker import chunk_documents
 
 def main():
-    text = load_text("documents/sample.txt")
-    
-    print(type(text))
-    print(len(text))
-    print("Loaded Text: ")
-    print(text)
+    documents = load_documents("documents/")
+    print(len(documents))
+    print("Loaded documents: ")
+    print(documents)
+
+    chunks = chunk_documents(documents)
+
+    print("\nChunks:\n")
+    for i, c in enumerate(chunks):
+        print(f"{i} | {c['source']} -> {c['chunk']}\n")
 
 if __name__ == "__main__":
     main()
