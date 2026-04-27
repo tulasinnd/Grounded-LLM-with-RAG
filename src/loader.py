@@ -1,13 +1,17 @@
 from pathlib import Path
 
-def load_text(file_path: str) -> str: # type hinting
-    path = Path(file_path)
+def load_documents(folder_path: str):
+    documents = []
 
-    if not path.exists():
-        raise FileNotFoundError(f"File not found: {file_path}")
+    folder = Path(folder_path)
 
-    if path.suffix == ".txt":
-        return path.read_text(encoding="utf-8")
+    for file in folder.glob("*"):
+        if file.suffix == ".txt":
+            text = file.read_text(encoding="utf-8")
 
-    else:
-        raise ValueError(f"Unsupported file type: {path.suffix}")
+            documents.append({
+                "source": file.name,
+                "text": text
+            })
+
+    return documents
