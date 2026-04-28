@@ -1,4 +1,4 @@
-def chunk_documents(documents, chunk_size=200, overlap=50):
+def chunk_documents(documents, chunk_size, overlap):
     chunks = []
 
     for doc in documents:
