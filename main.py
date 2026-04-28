@@ -1,17 +1,17 @@
+import config
 from src.loader import load_documents
 from src.chunker import chunk_documents
 
 def main():
-    documents = load_documents("documents/")
-    print(len(documents))
-    print("Loaded documents: ")
-    print(documents)
+    documents = load_documents(config.DOCUMENTS_PATH)
 
-    chunks = chunk_documents(documents)
+    chunks = chunk_documents(
+        documents,
+        chunk_size=config.CHUNK_SIZE,
+        overlap=config.CHUNK_OVERLAP
+    )
 
-    print("\nChunks:\n")
-    for i, c in enumerate(chunks):
-        print(f"{i} | {c['source']} -> {c['chunk']}\n")
+    print(f"Total chunks: {len(chunks)}")
 
 if __name__ == "__main__":
     main()
