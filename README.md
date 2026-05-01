@@ -1,3 +1,5 @@
+# **Grounded LLM with RAG**
+
 ## **Overview**
 
 This project implements a Retrieval-Augmented Generation (RAG) pipeline from scratch to understand how modern NLP systems combine semantic search with language models.
