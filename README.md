@@ -1,66 +1,155 @@
-# **Grounded LLM with RAG**
+# Grounded LLM with Retrieval-Augmented Generation (RAG)
 
-## **Overview**
+## Overview
 
-This project implements a Retrieval-Augmented Generation (RAG) pipeline from scratch to understand how modern NLP systems combine semantic search with language models.
+This project implements a Retrieval-Augmented Generation (RAG) pipeline from scratch to understand how modern NLP systems combine semantic search with Large Language Models (LLMs).
 
-Instead of relying only on a model’s internal knowledge, the system retrieves relevant information from external documents and uses it to support grounded response generation.
+Instead of relying solely on an LLM's internal knowledge, the system retrieves the most relevant information from external documents and uses that context to generate grounded, context-aware responses.
 
-The current implementation focuses on building the core data pipeline, including document processing, chunking, and semantic embedding generation.
+The project demonstrates the complete RAG workflow, including document loading, text chunking, embedding generation, vector indexing, semantic retrieval, and answer generation using a local Ollama model.
 
-## **Architecture**
 
-The system follows a standard Retrieval-Augmented Generation (RAG) pipeline:
+## Architecture
 
+The system follows the standard Retrieval-Augmented Generation pipeline:
+
+```text
+Documents (TXT)
+      │
+      ▼
+Document Loader
+      │
+      ▼
+Text Chunking
+      │
+      ▼
+Sentence Embeddings
+      │
+      ▼
+FAISS Vector Index
+      │
+      ▼
+User Query
+      │
+      ▼
+Query Embedding
+      │
+      ▼
+Top-K Semantic Retrieval
+      │
+      ▼
+Retrieved Context
+      │
+      ▼
+Local LLM (Ollama)
+      │
+      ▼
+Grounded Response
 ```
-Documents (PDF / Text)
-        ↓
-Text Processing (Cleaning + Chunking)
-        ↓
-Embedding Model (Semantic Vector Representation)
-        ↓
-Vector Index (FAISS)
-        ↓
-Query → Embedding → Similarity Search
-        ↓
-Top-K Relevant Chunks
-        ↓
-LLM (GPT-2) → Final Answer
+
+## Project Structure
+
+```text
+Grounded-LLM-RAG/
+│
+├── documents/                 # Sample documents
+├── src/
+│   ├── loader.py
+│   ├── chunker.py
+│   ├── embedder.py
+│   └── generator.py
+│
+├── config.py
+├── main.py
+├── requirements.txt
+└── README.md
 ```
 
-This architecture separates retrieval and generation, allowing the system to access external knowledge and produce more grounded responses.
+## Components
 
-## **Components**
+### Document Loader
 
-The current implementation includes the following modules:
+Loads text documents from the data directory while preserving document metadata.
 
-* **Loader**
-  Loads documents from the data directory and maintains source information.
+### Chunker
 
-* **Chunker**
-  Splits documents into smaller overlapping chunks to preserve semantic continuity and improve retrieval quality.
+Splits documents into overlapping chunks to improve retrieval quality and maintain semantic context.
 
-* **Embedder**
-  Converts each text chunk into a dense vector representation using a pretrained embedding model.
+### Embedder
 
-* **Config**
-  Centralized configuration for controlling parameters such as chunk size, overlap, and model selection.
+Generates dense semantic embeddings using the **all-MiniLM-L6-v2** sentence-transformer model.
 
-## **Embedding Strategy**
+### Vector Store
 
-Each document chunk is converted into a dense vector using the `all-MiniLM-L6-v2` sentence-transformer model.
+Stores document embeddings in a **FAISS** index for efficient similarity search.
 
-The embedding process involves:
+### Retriever
 
-* Tokenizing the input text (handled internally by the model)
-* Encoding tokens through a transformer-based encoder
-* Applying pooling to generate a fixed-size vector representation (384 dimensions)
+Converts the user query into an embedding and retrieves the most relevant document chunks.
 
-Instead of embedding entire documents, the system operates at the chunk level. This improves retrieval granularity and allows more precise matching between user queries and relevant content.
+### Generator
 
-These embeddings form a semantic vector space where:
+Uses a local **Ollama** model to generate answers grounded in the retrieved context.
 
-* Similar meanings are located closer together
-* Retrieval can be performed using vector similarity instead of keyword matching
+## Embedding Strategy
 
-This representation is the foundation for efficient and scalable information retrieval in the RAG pipeline.
+Each document chunk is converted into a 384-dimensional dense vector using the **all-MiniLM-L6-v2** embedding model. The system performs retrieval at the chunk level rather than the document level, allowing more precise semantic matching between user queries and relevant information.
+
+## Technologies Used
+
+- Python
+- Sentence Transformers
+- FAISS
+- NumPy
+- Ollama
+- Local Large Language Models (LLMs)
+
+## How to Run
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the project:
+
+```bash
+python main.py
+```
+
+Enter your question when prompted.
+
+---
+
+## Sample Questions
+
+The repository contains fictional documents for testing the retrieval pipeline.
+
+Try asking:
+
+- Who is the AI assistant used by employees?
+- What is the most popular product?
+- Which product was released in 2025?
+- What does NovaSecure do?
+- Which department follows Agile development?
+- How many annual leave days do employees receive?
+- What is NovaMind Enterprise?
+
+## Demo
+
+![RAG Demo](assets/demo.png)
+
+## Learning Objectives
+
+This project was built to gain hands-on understanding of the core concepts behind Retrieval-Augmented Generation, including:
+
+- Document preprocessing
+- Text chunking
+- Semantic embeddings
+- Vector similarity search
+- FAISS indexing
+- Context retrieval
+- Grounded response generation
+- Local LLM inference with Ollama
+
