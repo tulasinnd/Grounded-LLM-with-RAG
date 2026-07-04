@@ -39,15 +39,19 @@ def main():
     index.add(embedding_matrix)
 
     # Query
-    query = "What is RAG?"
+    print("\nSample questions related to documents:")
+    print("- Who is the AI assistant used by employees?")
+    print("- What is the most popular product?")
+    print("- Which product was released in 2025?")
+    print("- What does NovaSecure do?\n")
+
+    query = input("Enter your question: ")
     query_embedding = embedder.encode([query])
 
     # Retrieve relevant chunks
     k = 2
     _, indices = index.search(query_embedding, k)
     retrieved_chunks = [chunks[i] for i in indices[0]]
-
-    print(f"\nQuery: {query}\n")
 
     print("Retrieved Context:")
     for i, chunk in enumerate(retrieved_chunks, start=1):
