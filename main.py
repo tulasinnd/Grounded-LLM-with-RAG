@@ -1,40 +1,81 @@
+import faiss
+import numpy as np
+
 import config
-from src.loader import load_documents
 from src.chunker import chunk_documents
 from src.embedder import Embedder
+from src.generator import Generator
+from src.loader import load_documents
+
 
 def main():
-    # LOADING
-    # load documents
+    # Load documents
     documents = load_documents(config.DOCUMENTS_PATH)
-    print(documents)
 
-    # CHUNKING
-    # create chunks from documents
+    # Create chunks
     chunks = chunk_documents(
         documents,
         chunk_size=config.CHUNK_SIZE,
-        overlap=config.CHUNK_OVERLAP )
-    print(f"Total chunks: {len(chunks)}")
-    print(chunks)
+        overlap=config.CHUNK_OVERLAP,
+    )
 
-    # EMBEDDING
-    # initialize embedder
+    # Generate embeddings
     embedder = Embedder(config.EMBEDDING_MODEL)
 
-    # extract chunk texts
-    chunk_texts = [c["chunk"] for c in chunks]
-
-    # generate embeddings
+    chunk_texts = [chunk["chunk"] for chunk in chunks]
     embeddings = embedder.encode(chunk_texts)
-    print(embeddings)
-    print(len(embeddings))        # number of chunks
-    print(len(embeddings[0]))     # embedding dimension
 
-    # attach embeddings back to chunks
-    for i, emb in enumerate(embeddings):
-        chunks[i]["embedding"] = emb
-    print(chunks)
+    # Attach embeddings to chunks
+    for chunk, embedding in zip(chunks, embeddings):
+        chunk["embedding"] = embedding
+
+    # Build FAISS index
+    embedding_matrix = np.array(
+        [chunk["embedding"] for chunk in chunks],
+        dtype=np.float32,
+    )
+
+    index = faiss.IndexFlatL2(embedding_matrix.shape[1])
+    index.add(embedding_matrix)
+
+    # Query
+    query = "What is RAG?"
+    query_embedding = embedder.encode([query])
+
+    # Retrieve relevant chunks
+    k = 2
+    _, indices = index.search(query_embedding, k)
+    retrieved_chunks = [chunks[i] for i in indices[0]]
+
+    print(f"\nQuery: {query}\n")
+
+    print("Retrieved Context:")
+    for i, chunk in enumerate(retrieved_chunks, start=1):
+        print(f"\nChunk {i}:")
+        print(chunk["chunk"])
+
+    # Generate answer
+    generator = Generator(config.GENERATOR_MODEL)
+
+    context = "\n".join(chunk["chunk"] for chunk in retrieved_chunks)
+
+    prompt = f"""
+Answer the question using the context below.
+
+Context:
+{context}
+
+Question:
+{query}
+
+Answer in one or two sentences:
+"""
+
+    answer = generator.generate(prompt)
+
+    print("\n\nGenerated Answer:")
+    print(answer)
+
 
 if __name__ == "__main__":
     main()
