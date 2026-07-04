@@ -1,0 +1,26 @@
+ApexNova Technologies - Product Catalog
+
+ApexNova Technologies develops cloud-based software products for businesses.
+
+Product 1: NovaDocs
+NovaDocs is a document management platform that allows companies to organize, search, and securely store business documents. It supports version history, permission management, and AI-powered document search.
+
+Product 2: NovaAssist
+NovaAssist is an AI chatbot platform designed for customer support teams. It can answer frequently asked questions, summarize conversations, and generate support ticket responses.
+
+Product 3: NovaAnalytics
+NovaAnalytics is a business intelligence dashboard that provides sales reports, customer insights, and predictive analytics using machine learning models.
+
+Product 4: NovaSecure
+NovaSecure is a cybersecurity monitoring platform that detects unusual login activity, monitors network events, and generates security alerts in real time.
+
+Product 5: NovaFlow
+NovaFlow is a workflow automation platform that allows businesses to automate repetitive tasks using drag-and-drop workflows.
+
+The most popular product is NovaAssist, with over 1,500 business customers worldwide.
+
+The latest product released by the company is NovaSecure, launched in February 2025.
+
+All products support cloud deployment and role-based access control. Customers receive 24/7 technical support through email, live chat, and phone.
+
+The company's long-term goal is to integrate all products using a unified AI platform called NovaMind Enterprise.

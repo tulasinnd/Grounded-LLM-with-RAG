@@ -1,3 +1,0 @@
-Transformers are deep learning models used in NLP.
-They rely on self-attention mechanisms.
-They process entire sequences in parallel.

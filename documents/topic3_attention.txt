@@ -1,3 +1,0 @@
-Attention mechanism allows models to focus on important words.
-It computes relationships between tokens.
-Self-attention is used in transformers.

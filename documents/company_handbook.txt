@@ -1,0 +1,21 @@
+ApexNova Technologies - Employee Handbook
+
+Welcome to ApexNova Technologies. We are a software company founded in 2019 with headquarters in Bengaluru, India. Our mission is to build AI-powered software that improves productivity for businesses around the world.
+
+The company currently has over 250 employees working across Engineering, Data Science, Product Management, Design, Human Resources, Sales, and Customer Success.
+
+Employees follow a hybrid work policy. They are expected to work from the office on Tuesdays and Thursdays, while the remaining days can be remote.
+
+Working hours are from 9:30 AM to 6:30 PM with a one-hour lunch break. Flexible working hours are available for employees with manager approval.
+
+Each employee receives 24 days of paid annual leave, 12 days of sick leave, and 10 public holidays every year.
+
+The Engineering department follows Agile development practices with two-week sprints. Every Friday from 3 PM to 5 PM is reserved for learning sessions where employees share technical knowledge.
+
+The company's internal AI assistant is called NovaMind. Employees use NovaMind to search company documentation, summarize meeting notes, and answer technical questions.
+
+Every new employee is assigned a mentor for the first three months. Quarterly performance reviews are conducted in March, June, September, and December.
+
+The company cafeteria provides breakfast, lunch, and evening snacks free of charge. Employees also receive a yearly learning budget of ₹40,000 for books, online courses, certifications, and conferences.
+
+ApexNova Technologies encourages continuous learning, collaboration, and innovation. Employees are expected to maintain high ethical standards and protect confidential company information.

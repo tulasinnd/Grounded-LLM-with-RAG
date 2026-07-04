@@ -1,3 +1,0 @@
-RAG stands for Retrieval Augmented Generation.
-It combines retrieval systems with language models.
-It helps reduce hallucination.

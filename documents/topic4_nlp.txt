@@ -1,3 +1,0 @@
-Natural Language Processing deals with human language.
-It includes tasks like classification and translation.
-Machine learning models are widely used in NLP.
