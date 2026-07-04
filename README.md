@@ -120,21 +120,7 @@ python main.py
 
 Enter your question when prompted.
 
----
-
-## Sample Questions
-
-The repository contains fictional documents for testing the retrieval pipeline.
-
-Try asking:
-
-- Who is the AI assistant used by employees?
-- What is the most popular product?
-- Which product was released in 2025?
-- What does NovaSecure do?
-- Which department follows Agile development?
-- How many annual leave days do employees receive?
-- What is NovaMind Enterprise?
+NOTE: The repository contains fictional documents for testing the retrieval pipeline. So ask relevant questions
 
 ## Demo
 
