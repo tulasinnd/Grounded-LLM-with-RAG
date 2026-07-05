@@ -124,7 +124,7 @@ NOTE: The repository contains fictional documents for testing the retrieval pipe
 
 ## Demo
 
-![RAG Demo](assets/demo.png)
+![RAG Demo](assets/app.png)
 
 ## Learning Objectives
 
